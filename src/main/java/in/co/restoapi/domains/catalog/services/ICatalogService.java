@@ -22,4 +22,6 @@ public interface ICatalogService {
     CollectionModel<CatalogRepresentationModel> findAll();
 
     MenuItemRepresentationModel findByCode(String code);
+
+    Page<CatalogRepresentationModel> getPaginatedCatalog(Pageable pageable);
 }

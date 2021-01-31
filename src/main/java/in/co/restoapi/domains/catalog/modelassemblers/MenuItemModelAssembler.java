@@ -23,7 +23,7 @@ public class MenuItemModelAssembler extends RepresentationModelAssemblerSupport<
 
     public MenuItemRepresentationModel toModel(CatalogMenuItemEntity entity) {
         MenuItemRepresentationModel model = (MenuItemRepresentationModel) this.instantiateModel(entity);
-        model.add(WebMvcLinkBuilder.linkTo(((CatalogController) WebMvcLinkBuilder.methodOn(CatalogController.class, new Object[0])).getProductsByCode(entity.getCode())).withSelfRel());
+        model.add(WebMvcLinkBuilder.linkTo(((CatalogController) WebMvcLinkBuilder.methodOn(CatalogController.class, new Object[0])).getCatalogByCode(entity.getCode())).withSelfRel());
         this.copyProperties(entity, model);
         return model;
     }

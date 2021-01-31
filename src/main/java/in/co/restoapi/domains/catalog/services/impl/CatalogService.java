@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class CatalogService implements ICatalogService {
+
     private final Logger log = LoggerFactory.getLogger(CatalogService.class);
     private final MenuItemRepository menuItemRepository;
     private final CatalogModelAssembler catalogModelAssembler;
@@ -49,5 +50,10 @@ public class CatalogService implements ICatalogService {
                 .findByCode(code)
                 .map(a -> menuItemRepositoryAssembler.toModel(a))
                 .orElse(null);
+    }
+
+    @Override
+    public Page<CatalogRepresentationModel> getPaginatedCatalog(Pageable pageable) {
+        return null;
     }
 }

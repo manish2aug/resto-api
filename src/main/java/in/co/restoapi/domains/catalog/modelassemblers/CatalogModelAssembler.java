@@ -3,6 +3,7 @@ package in.co.restoapi.domains.catalog.modelassemblers;
 import in.co.restoapi.domains.catalog.controllers.CatalogController;
 import in.co.restoapi.domains.catalog.persistence.entity.CatalogMenuItemEntity;
 import in.co.restoapi.domains.catalog.representationmodel.CatalogRepresentationModel;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
@@ -22,9 +23,20 @@ public class CatalogModelAssembler
         albumModel.add(
                 WebMvcLinkBuilder.linkTo(
                         WebMvcLinkBuilder.methodOn(CatalogController.class, new Object[0])
-                                .getProductsByCode(entity.getCode())).withSelfRel());
+                                .getCatalogByCode(entity.getCode())).withSelfRel());
         this.copyProperties(entity, albumModel);
         return albumModel;
+    }
+
+    @Override
+    public CollectionModel<CatalogRepresentationModel> toCollectionModel(Iterable<? extends CatalogMenuItemEntity> entities) {
+        CollectionModel<CatalogRepresentationModel> actorModels = super.toCollectionModel(entities);
+        actorModels.add(
+                WebMvcLinkBuilder.linkTo(
+                        WebMvcLinkBuilder.methodOn(CatalogController.class)
+                                .getCatalog()).withSelfRel());
+
+        return actorModels;
     }
 
     private void copyProperties(CatalogMenuItemEntity entity, CatalogRepresentationModel albumModel) {

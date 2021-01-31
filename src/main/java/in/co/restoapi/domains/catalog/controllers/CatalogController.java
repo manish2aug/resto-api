@@ -6,6 +6,8 @@ import in.co.restoapi.domains.catalog.services.ICatalogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,12 +31,20 @@ public class CatalogController {
     }
 
     @GetMapping
-    public ResponseEntity<CollectionModel<CatalogRepresentationModel>> getProductsCatalog() {
+    public ResponseEntity<CollectionModel<CatalogRepresentationModel>> getCatalog() {
         return ResponseEntity.ok().body(this.catalogService.findAll());
     }
 
+    @GetMapping(path = "/characters/page")
+    Page<CatalogRepresentationModel> getPaginatedCatalog(Pageable pageable) {
+        return catalogService.getPaginatedCatalog(pageable);
+    }
+
     @GetMapping({"/{code}"})
-    public ResponseEntity<MenuItemRepresentationModel> getProductsByCode(@PathVariable("code") String code) {
+    public ResponseEntity<MenuItemRepresentationModel> getCatalogByCode(
+            @PathVariable("code") String code) {
         return ResponseEntity.ok().body(this.catalogService.findByCode(code));
     }
+
+
 }

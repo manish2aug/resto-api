@@ -174,6 +174,7 @@ create table catalog.menu_item
     name                       varchar(50)  not null,
     code                       varchar(20)  not null unique,
     description                varchar(100) not null,
+    additional_info            varchar(200) not null,
     base_price                 numeric,
     menu_course_id             integer      not null references catalog.menu_course (id),
     recipe_id                  integer      not null references catalog.recipe (id),
@@ -425,9 +426,11 @@ INSERT INTO catalog.recipe(code, description, instructions, cocking_method_id, c
 VALUES ('miswch01rr01', 'Recommended sandwich recipe', 'Mix the ingredients, fill with stuffing and grill', 3, 3, 2, 1,
         2, 2, 3, 7);
 
-INSERT INTO catalog.menu_item("name", code, description, base_price, menu_course_id, recipe_id, measurement_unit_id,
-                              measurement_amount, is_served_alone, is_complementary, complementary_with_item_id)
-VALUES ('sandwich', 'miswch01', 'Sandwich', 10, 4, 1, 1, 2, true, false, null);
+INSERT INTO catalog.menu_item("name", code, description, additional_info, base_price, menu_course_id, recipe_id,
+                              measurement_unit_id, measurement_amount, is_served_alone, is_complementary,
+                              complementary_with_item_id)
+VALUES ('sandwich', 'miswch01', 'Sandwich', 'A perfect, quick and not so filling snack', 10, 4, 1, 1, 2, true, false,
+        null);
 
 INSERT INTO "catalog".menu_item_picture(url, menu_item_id)
 VALUES ('https://cdn.pixabay.com/photo/2016/11/29/04/00/bread-1867208_960_720.jpg', 1);
