@@ -1,9 +1,15 @@
 package in.co.restoapi.domains.catalog.persistence.entity;
 
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Objects;
 
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
 @Entity
 @Table(name = "cooking_method", schema = "catalog", catalog = "resto_db")
 public class CatalogCookingMethodEntity {
@@ -12,17 +18,11 @@ public class CatalogCookingMethodEntity {
     private String code;
     private String description;
     private String additionalInfo;
-    private Collection<CatalogRecipeEntity> recipesById;
-
-    public CatalogCookingMethodEntity() {
-    }
+//    private Collection<CatalogRecipeEntity> recipesById;
 
     @Id
     @GeneratedValue
-    @Column(
-            name = "id",
-            nullable = false
-    )
+    @Column(name = "id", nullable = false)
     public Long getId() {
         return this.id;
     }
@@ -32,11 +32,7 @@ public class CatalogCookingMethodEntity {
     }
 
     @Basic
-    @Column(
-            name = "name",
-            nullable = false,
-            length = 50
-    )
+    @Column(name = "name", nullable = false, length = 50)
     public String getName() {
         return this.name;
     }
@@ -46,11 +42,7 @@ public class CatalogCookingMethodEntity {
     }
 
     @Basic
-    @Column(
-            name = "code",
-            nullable = false,
-            length = 10
-    )
+    @Column(name = "code", nullable = false, length = 10)
     public String getCode() {
         return this.code;
     }
@@ -60,11 +52,7 @@ public class CatalogCookingMethodEntity {
     }
 
     @Basic
-    @Column(
-            name = "description",
-            nullable = false,
-            length = 100
-    )
+    @Column(name = "description", nullable = false, length = 100)
     public String getDescription() {
         return this.description;
     }
@@ -74,11 +62,7 @@ public class CatalogCookingMethodEntity {
     }
 
     @Basic
-    @Column(
-            name = "additional_info",
-            nullable = false,
-            length = 200
-    )
+    @Column(name = "additional_info", nullable = false, length = 200)
     public String getAdditionalInfo() {
         return this.additionalInfo;
     }
@@ -87,29 +71,13 @@ public class CatalogCookingMethodEntity {
         this.additionalInfo = additionalInfo;
     }
 
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        } else if (o != null && this.getClass() == o.getClass()) {
-            CatalogCookingMethodEntity that = (CatalogCookingMethodEntity) o;
-            return Objects.equals(this.id, that.id) && Objects.equals(this.name, that.name) && Objects.equals(this.code, that.code) && Objects.equals(this.description, that.description) && Objects.equals(this.additionalInfo, that.additionalInfo);
-        } else {
-            return false;
-        }
-    }
 
-    public int hashCode() {
-        return Objects.hash(new Object[]{this.id, this.name, this.code, this.description, this.additionalInfo});
-    }
-
-    @OneToMany(
-            mappedBy = "cookingMethodByCockingMethodId"
-    )
-    public Collection<CatalogRecipeEntity> getRecipesById() {
-        return this.recipesById;
-    }
-
-    public void setRecipesById(Collection<CatalogRecipeEntity> recipesById) {
-        this.recipesById = recipesById;
-    }
+//    @OneToMany(mappedBy = "cookingMethodByCockingMethodId")
+//    public Collection<CatalogRecipeEntity> getRecipesById() {
+//        return this.recipesById;
+//    }
+//
+//    public void setRecipesById(Collection<CatalogRecipeEntity> recipesById) {
+//        this.recipesById = recipesById;
+//    }
 }

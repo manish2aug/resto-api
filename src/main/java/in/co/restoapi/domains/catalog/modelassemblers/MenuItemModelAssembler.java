@@ -48,7 +48,7 @@ public class MenuItemModelAssembler extends RepresentationModelAssemblerSupport<
         recipeIngredientsById
                 .stream()
                 .map(CatalogRecipeIngredientEntity::getIngredientByIngredientId)
-                .filter(CatalogIngredientOptionEntity::getDefault)
+//                .filter(CatalogIngredientOptionEntity::getDefault)
                 .forEach(b -> ingredientRepresentationModels.add(new IngredientRepresentationModel(b)));
         return ingredientRepresentationModels;
     }

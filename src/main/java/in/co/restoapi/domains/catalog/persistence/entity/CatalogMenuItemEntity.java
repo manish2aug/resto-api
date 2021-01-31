@@ -35,7 +35,7 @@ public class CatalogMenuItemEntity {
     private CatalogMeasurementUnitEntity measurementUnitByMeasurementUnitId;
     private CatalogMenuItemEntity menuItemByComplementaryWithItemId;
     private Collection<CatalogMenuItemEntity> menuItemsById;
-    private Collection<CatalogMenuItemItemTagEntity> menuItemItemTagsById;
+    private Collection<CatalogMenuItemTagEntity> menuItemItemTagsById;
     private Collection<CatalogMenuItemPictureEntity> menuItemPicturesById;
 
     public CatalogMenuItemEntity() {
@@ -309,11 +309,11 @@ public class CatalogMenuItemEntity {
     @OneToMany(
             mappedBy = "menuItemByMenuItemId"
     )
-    public Collection<CatalogMenuItemItemTagEntity> getMenuItemItemTagsById() {
+    public Collection<CatalogMenuItemTagEntity> getMenuItemItemTagsById() {
         return this.menuItemItemTagsById;
     }
 
-    public void setMenuItemItemTagsById(Collection<CatalogMenuItemItemTagEntity> menuItemItemTagsById) {
+    public void setMenuItemItemTagsById(Collection<CatalogMenuItemTagEntity> menuItemItemTagsById) {
         this.menuItemItemTagsById = menuItemItemTagsById;
     }
 

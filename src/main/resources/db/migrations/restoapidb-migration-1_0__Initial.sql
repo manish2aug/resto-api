@@ -148,8 +148,7 @@ create table catalog.ingredient_option
     is_allowed_in_fasting boolean               default false,
     innate_potency_id     integer      not null references catalog.innate_potency (id),
     nutrition_value_id    integer references catalog.nutrition_value (id),
-    is_available          boolean               default true,
-    is_default            boolean      not null default false
+    is_available          boolean               default true
 );
 
 create table catalog.recipe
@@ -195,14 +194,15 @@ create table catalog.menu_item_picture
 
 create table catalog.recipe_ingredient
 (
-    id                   serial primary key,
-    recipe_id            integer not null references catalog.recipe (id),
-    ingredient_option_id integer not null references catalog.ingredient_option (id),
-    measurement_unit_id  integer not null references catalog.measurement_unit (id),
-    measurement_amount   numeric not null
+    id                        serial primary key,
+    recipe_id                 integer not null references catalog.recipe (id),
+    ingredient_option_id      integer not null references catalog.ingredient_option (id),
+    is_ingredient_replaceable boolean default true,
+    measurement_unit_id       integer not null references catalog.measurement_unit (id),
+    measurement_amount        numeric not null
 );
 
-create table catalog.menu_item_item_tag
+create table catalog.menu_item_tag
 (
     id           serial primary key,
     menu_item_id integer not null references catalog.menu_item (id),
@@ -405,14 +405,14 @@ INSERT INTO catalog.ingredient_option ("name", code, description, ingredient_id,
                                        is_allowed_in_fasting)
 VALUES ('white_bread', 'wbrd', 'White bread', 1, 3, null, false);
 INSERT INTO catalog.ingredient_option ("name", code, description, ingredient_id, innate_potency_id, nutrition_value_id,
-                                       is_allowed_in_fasting, is_default)
-VALUES ('brown_bread', 'bbrd', 'Brown bread', 1, 3, null, false, true);
+                                       is_allowed_in_fasting)
+VALUES ('brown_bread', 'bbrd', 'Brown bread', 1, 3, null, false);
 INSERT INTO catalog.ingredient_option ("name", code, description, ingredient_id, innate_potency_id, nutrition_value_id,
                                        is_allowed_in_fasting)
 VALUES ('whole_grain_bread', 'wgbrd', 'Whole grain bread', 1, 3, null, false);
 INSERT INTO catalog.ingredient_option ("name", code, description, ingredient_id, innate_potency_id, nutrition_value_id,
-                                       is_allowed_in_fasting, is_default)
-VALUES ('peeled_boiled_potato', 'bpp', 'Boiled potato (without skin)', 2, 1, 2, true, true);
+                                       is_allowed_in_fasting)
+VALUES ('peeled_boiled_potato', 'bpp', 'Boiled potato (without skin)', 2, 1, 2, true);
 INSERT INTO catalog.ingredient_option ("name", code, description, ingredient_id, innate_potency_id, nutrition_value_id,
                                        is_allowed_in_fasting)
 VALUES ('skin_boiled_potato', 'bsp', 'Boiled potato (with skin)', 2, 1, null, true);
@@ -440,9 +440,9 @@ VALUES (1, 2, 1, 2);
 INSERT INTO catalog.recipe_ingredient (recipe_id, ingredient_option_id, measurement_unit_id, measurement_amount)
 VALUES (1, 4, 2, 100);
 
-INSERT INTO "catalog".menu_item_item_tag(menu_item_id, item_tag_id)
+INSERT INTO "catalog".menu_item_tag(menu_item_id, item_tag_id)
 VALUES (1, 1);
-INSERT INTO "catalog".menu_item_item_tag(menu_item_id, item_tag_id)
+INSERT INTO "catalog".menu_item_tag(menu_item_id, item_tag_id)
 VALUES (1, 8);
 
 -- Marketing schema objects

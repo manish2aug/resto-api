@@ -27,7 +27,7 @@ public class CatalogItemTagEntity {
     private String code;
     private String description;
     private String additionalInfo;
-    private Collection<CatalogMenuItemItemTagEntity> menuItemItemTagsById;
+    private Collection<CatalogMenuItemTagEntity> menuItemItemTagsById;
 
     public CatalogItemTagEntity() {
     }
@@ -120,11 +120,11 @@ public class CatalogItemTagEntity {
     @OneToMany(
             mappedBy = "itemTagByItemTagId"
     )
-    public Collection<CatalogMenuItemItemTagEntity> getMenuItemItemTagsById() {
+    public Collection<CatalogMenuItemTagEntity> getMenuItemItemTagsById() {
         return this.menuItemItemTagsById;
     }
 
-    public void setMenuItemItemTagsById(Collection<CatalogMenuItemItemTagEntity> menuItemItemTagsById) {
+    public void setMenuItemItemTagsById(Collection<CatalogMenuItemTagEntity> menuItemItemTagsById) {
         this.menuItemItemTagsById = menuItemItemTagsById;
     }
 }
