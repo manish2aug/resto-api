@@ -12,6 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.codec.ServerCodecConfigurer;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication(scanBasePackages = {"in.co.restoapi.*"})
@@ -27,4 +28,10 @@ public class Application extends SpringBootServletInitializer implements WebMvcC
     public ServerCodecConfigurer serverCodecConfigurer() {
         return ServerCodecConfigurer.create();
     }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/v1/catalog").allowedOriginPatterns("http://localhost:4200");
+    }
+
 }

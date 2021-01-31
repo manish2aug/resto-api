@@ -430,7 +430,7 @@ INSERT INTO catalog.menu_item("name", code, description, base_price, menu_course
 VALUES ('sandwich', 'miswch01', 'Sandwich', 10, 4, 1, 1, 2, true, false, null);
 
 INSERT INTO "catalog".menu_item_picture(url, menu_item_id)
-VALUES ('https://pixabay.com/photos/bread-sandwich-food-plate-table-1867208', 1);
+VALUES ('https://cdn.pixabay.com/photo/2016/11/29/04/00/bread-1867208_960_720.jpg', 1);
 
 INSERT INTO catalog.recipe_ingredient (recipe_id, ingredient_option_id, measurement_unit_id, measurement_amount)
 VALUES (1, 2, 1, 2);

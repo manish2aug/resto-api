@@ -22,8 +22,8 @@
 		<!--flyway-->
 		<flyway.user>postgres</flyway.user>
 		<flyway.password>password</flyway.password>
-		<flyway.database>resto_db</flyway.database>
-		<flyway.schema>catalog</flyway.schema>
+		<database>resto_db</database>
+		<schema>catalog</schema>
 	</properties>
 
 	<dependencies>
@@ -81,11 +81,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.restdocs</groupId>-->
-<!--			<artifactId>spring-restdocs-mockmvc</artifactId>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.8</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -136,8 +137,8 @@
 						<POSTGRESQL_SERVICE_PORT>5432</POSTGRESQL_SERVICE_PORT>
 						<POSTGRESQL_USER>${flyway.user}</POSTGRESQL_USER>
 						<POSTGRESQL_PASSWORD>${flyway.password}</POSTGRESQL_PASSWORD>
-						<POSTGRESQL_DATABASE>${flyway.database}</POSTGRESQL_DATABASE>
-						<POSTGRESQL_SCHEMA>${flyway.schema}</POSTGRESQL_SCHEMA>
+						<POSTGRESQL_DATABASE>${database}</POSTGRESQL_DATABASE>
+						<POSTGRESQL_SCHEMA>${schema}</POSTGRESQL_SCHEMA>
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>

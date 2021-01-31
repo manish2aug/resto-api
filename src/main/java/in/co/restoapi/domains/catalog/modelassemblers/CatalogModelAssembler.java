@@ -31,10 +31,11 @@ public class CatalogModelAssembler
         albumModel.setAvailable(entity.getAvailable());
         albumModel.setServedAlone(entity.getServedAlone());
         albumModel.setComplementary(entity.getComplementary());
+        albumModel.setPictureUrls(entity.getMenuItemPicturesById().stream().map(a -> a.getUrl()).collect(Collectors.toList()));
         albumModel.setTags(
                 entity.getMenuItemItemTagsById()
                         .stream().map((a) -> a.getItemTagByItemTagId().getName()).collect(Collectors.toList()));
-        albumModel.setName(entity.getName());
+        albumModel.setDescription(entity.getDescription());
         albumModel.setCode(entity.getCode());
         albumModel.setQuantity(
                 String.join(" ", Integer.toUnsignedString(entity.getMeasurementAmount()),
